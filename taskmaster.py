@@ -7,7 +7,7 @@ from flask import Flask, jsonify
 import subprocess
 import sys
 import os
-import swiftclient.client
+#import swiftclient.client
 import json
 import time
 import urllib2
