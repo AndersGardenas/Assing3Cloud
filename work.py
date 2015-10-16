@@ -1,6 +1,7 @@
 import json
 import os
 import urllib2
+from celery import Celery
 
 app = Celery('tasks', backend='amqp', broker='amqp://worker:worker@130.238.29.173/rabbithost')
 
