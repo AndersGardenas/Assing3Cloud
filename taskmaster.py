@@ -2,7 +2,7 @@
 
 from celery import Celery
 from celery import group
-from tasks import wordcount
+from work import calculate
 from flask import Flask, jsonify
 import subprocess
 import sys
@@ -30,11 +30,11 @@ def cow_say():
 	D = tweets[12:16]
 	E = tweets[16:]
 
-	job = group(wordcount.s(A), 
-		wordcount.s(B), 
-		wordcount.s(C),
-		wordcount.s(D),
-		wordcount.s(E))
+	job = group(calculate.s(A), 
+		calculate.s(B), 
+		calculate.s(C),
+		calculate.s(D),
+		calculate.s(E))
 
 	tweetTask = job.apply_async()
 	print "Celery is working..."
@@ -45,13 +45,13 @@ def cow_say():
 		time.sleep(5)
 	print "The task is done!"
 
-	toReturn = tweetTask.get()
+#	toReturn = tweetTask.get()
 
-	c = Counter()
-	for d in toReturn:
-		c.update(d)
+#	c = Counter()
+#	for d in toReturn:
+#		c.update(d)
 
-	return jsonify(dict(c)), 200
+#	return jsonify(dict(c)), 200
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
