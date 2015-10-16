@@ -1,6 +1,6 @@
 import json
 import os
-import swiftclient.client
+
 
 skip = 0
 words = {'han': 0, 'hon' : 0, 'den' : 0,'det' : 0, 'denna': 0, 'denne' : 0, 'hen' : 0}
