@@ -16,7 +16,7 @@ from collections import Counter
 app = Flask(__name__)
 
 @app.route('/run', methods=['GET'])
-def cow_say():
+def task():
         print "started"
         tweets = []
         req = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets")
@@ -57,8 +57,10 @@ def cow_say():
         c = Counter()
         for result in results:
                 c.update(result)
-
-        return  jsonify(dict(c))
+        
+        print jsonify(dict(c))
+        return 1
+        #return  jsonify(dict(c))
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
