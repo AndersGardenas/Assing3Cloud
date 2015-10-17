@@ -38,6 +38,8 @@ def cow_say():
                 calculate.s(E))
 
         tweetTask = job.apply_async()
+
+
         print "Celery is working..."
         counter = 0
         while (tweetTask.ready() == False):
@@ -47,13 +49,16 @@ def cow_say():
 
                 
         print "The task is done!"
+
+        #get values
         results = tweetTask.get()
 
+        #summ
         c = Counter()
         for result in results:
                 c.update(result)
 
-        return  jsonify(dict(c)), 200
+        return  jsonify(dict(c))
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
