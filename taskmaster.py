@@ -53,7 +53,7 @@ c = Counter()
 for result in results:
         c.update(result)
 
-	#return jsonify(dict(c)), 200
+print jsonify(dict(c)), 200
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
