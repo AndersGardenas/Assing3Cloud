@@ -25,11 +25,11 @@ def task():
         for t in tweetsObject:
                 tweets.append(t)
 
-        A = tweets[:4]
-        B = tweets[4:8]
-        C = tweets[8:12]
-        D = tweets[12:16]
-        E = tweets[16:]
+        A = tweets[:1]
+        B = tweets[:1]
+        C = tweets[:1]
+        D = tweets[:1]
+        E = tweets[:1]
         
         job = group(calculate.s(A), 
                 calculate.s(B), 
@@ -59,7 +59,7 @@ def task():
                 c.update(result)
         
         print c
-        print jsonify(dict(c))
+        print jsonify(c)
         return 1
         #return  jsonify(dict(c))
 
