@@ -60,7 +60,7 @@ def task():
         
         print c
         print jsonify(c)
-        return 1
+        return jsonify(c)
         #return  jsonify(dict(c))
 
 if __name__ == '__main__':
