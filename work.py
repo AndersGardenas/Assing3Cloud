@@ -3,8 +3,8 @@ import os
 import urllib2
 from celery import Celery
 
-app = Celery('tasks', backend='amqp', broker='amqp://worker:worker@192.168.0.121/rabbithost')
-
+#app = Celery('tasks', backend='amqp', broker='amqp://worker:worker@192.168.0.121/rabbithost')
+app = Celery('tasks', backend='amqp', broker='amqp://')
 @app.task
 def calculate (adresses):
     words = {'han': 0, 'hon' : 0, 'den' : 0,'det' : 0, 'denna': 0, 'denne' : 0, 'hen' : 0}
