@@ -58,6 +58,7 @@ def task():
         for result in results:
                 c.update(result)
         
+        print c
         print jsonify(dict(c))
         return 1
         #return  jsonify(dict(c))
