@@ -12,8 +12,8 @@ def calculate (adresses):
         print 'started'
         skip = 0
         
-
-        response = urllib2.urlopen('http://smog.uppmax.uu.se:8080/swift/v1/tweets/tweets/' + adress)
+        print adress
+        response = urllib2.urlopen('http://smog.uppmax.uu.se:8080/swift/v1/tweets/' + adress)
 
 
         for row in response:
