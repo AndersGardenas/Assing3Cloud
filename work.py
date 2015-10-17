@@ -3,7 +3,7 @@ import os
 import urllib2
 from celery import Celery
 
-app = Celery('tasks', backend='amqp', broker='amqp://worker:worker@130.238.29.86/rabbithost')
+app = Celery('tasks', backend='amqp', broker='amqp://worker:worker@192.168.0.121/rabbithost')
 
 @app.task
 def calculate (adresses):
