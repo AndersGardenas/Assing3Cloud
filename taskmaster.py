@@ -25,35 +25,35 @@ tweetsObject = response.read().split()
 for t in tweetsObject:
         tweets.append(t)
 
-	A = tweets[:4]
-        B = tweets[4:8]
-        C = tweets[8:12]
-        D = tweets[12:16]
-        E = tweets[16:]
+A = tweets[:4]
+B = tweets[4:8]
+C = tweets[8:12]
+D = tweets[12:16]
+E = tweets[16:]
 
-	job = group(calculate.s(A), 
-                    calculate.s(B), 
-                    calculate.s(C),
-                    calculate.s(D),
-                    calculate.s(E))
+job = group(calculate.s(A), 
+            calculate.s(B), 
+            calculate.s(C),
+            calculate.s(D),
+            calculate.s(E))
 
-	tweetTask = job.apply_async()
-        print "Celery is working..."
-        counter = 0
-        while (tweetTask.ready() == False):
-                print "... %i s" %(counter)
-                counter += 5
-                time.sleep(5)
+tweetTask = job.apply_async()
+print "Celery is working..."
+counter = 0
+while (tweetTask.ready() == False):
+        print "... %i s" %(counter)
+        counter += 5
+        time.sleep(5)
 
                 
-        print "The task is done!"
-	results = tweetTask.get()
+print "The task is done!"
+results = tweetTask.get()
 
-	c = Counter()
-        for result in results:
-                c.update(result)
+c = Counter()
+for result in results:
+        c.update(result)
 
-#	return jsonify(dict(c)), 200
+	#return jsonify(dict(c)), 200
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
