@@ -51,7 +51,7 @@ def cow_say():
 
         c = Counter()
         for result in results:
-        c.update(result)
+                c.update(result)
 
         return  jsonify(dict(c)), 200
 
