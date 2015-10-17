@@ -15,43 +15,44 @@ import urllib2
 
 app = Flask(__name__)
 
-@app.route('/run', methods=['GET'])
-def cow_say():
-	tweets = []
-	req = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets")
-	response = urllib2.urlopen(req)
-	tweetsObject = response.read().split()
-	for t in tweetsObject:
-		tweets.append(t)
+#@app.route('/run', methods=['GET'])
+#def cow_say():
+print "started"
+tweets = []
+req = urllib2.Request("http://smog.uppmax.uu.se:8080/swift/v1/tweets")
+response = urllib2.urlopen(req)
+tweetsObject = response.read().split()
+for t in tweetsObject:
+        tweets.append(t)
 
 	A = tweets[:4]
-	B = tweets[4:8]
-	C = tweets[8:12]
-	D = tweets[12:16]
-	E = tweets[16:]
+        B = tweets[4:8]
+        C = tweets[8:12]
+        D = tweets[12:16]
+        E = tweets[16:]
 
 	job = group(calculate.s(A), 
-		calculate.s(B), 
-		calculate.s(C),
-		calculate.s(D),
-		calculate.s(E))
+                    calculate.s(B), 
+                    calculate.s(C),
+                    calculate.s(D),
+                    calculate.s(E))
 
 	tweetTask = job.apply_async()
-	print "Celery is working..."
-	counter = 0
-	while (tweetTask.ready() == False):
-		print "... %i s" %(counter)
-		counter += 5
-		time.sleep(5)
-	print "The task is done!"
+        print "Celery is working..."
+        counter = 0
+        while (tweetTask.ready() == False):
+                print "... %i s" %(counter)
+                counter += 5
+                time.sleep(5)
+                print "The task is done!"
 
 	results = tweetTask.get()
 
 	c = Counter()
-	for result in results:
-		c.update(result)
+        for result in results:
+                c.update(result)
 
-	return jsonify(dict(c)), 200
+#	return jsonify(dict(c)), 200
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
