@@ -44,8 +44,9 @@ for t in tweetsObject:
                 print "... %i s" %(counter)
                 counter += 5
                 time.sleep(5)
-                print "The task is done!"
 
+                
+        print "The task is done!"
 	results = tweetTask.get()
 
 	c = Counter()
